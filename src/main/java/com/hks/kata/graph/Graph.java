@@ -35,13 +35,12 @@ public class Graph {
     }
 
     private void updateNodeLevels(Node node) {
-        for (Node currentNode : nodeById.values()) {
-            if (!currentNode.hasParent(node.getId())) {
-                continue;
-            }
-            currentNode.setLevel(max(node.getLevel() + 1, currentNode.getLevel()));
-            updateNodeLevels(currentNode);
-        }
+        nodeById.values().stream()
+                .filter(currentNode -> currentNode.hasParent(node.getId()))
+                .forEach(currentNode -> {
+                    currentNode.setLevel(max(node.getLevel() + 1, currentNode.getLevel()));
+                    updateNodeLevels(currentNode);
+                });
     }
 
     private Node computeRouteNode() {
