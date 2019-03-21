@@ -16,7 +16,7 @@ public class StepsGraph {
 
     private StepsGraph(Map<String, StepNode> stepByName) {
         this.stepByName = stepByName;
-        setStepNodesLevels(computeRouteNode());
+        setStepNodesLevel(computeRouteNode());
     }
 
     public int getLevelNumber() {
@@ -33,7 +33,7 @@ public class StepsGraph {
                 .collect(toList());
     }
 
-    private void setStepNodesLevels(StepNode stepNode) {
+    private void setStepNodesLevel(StepNode stepNode) {
         for (StepNode currentStepNode : stepByName.values()) {
             if (!currentStepNode.hasParent(stepNode.getId())) {
                 continue;
