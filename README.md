@@ -1,4 +1,4 @@
-# Xorkflow Stages Separator
+# Workflow Stages Separator
 
 
 We want to write a function to separate a given workflow’s steps into multiple stages
