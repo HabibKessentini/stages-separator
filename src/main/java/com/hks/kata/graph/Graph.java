@@ -22,9 +22,9 @@ public class Graph {
 
     public int getLevelNumber() {
         return nodeById.values().stream()
-                .map(Node::getLevel)
-                .reduce(Math::max)
-                .orElse(0);
+                .mapToInt(Node::getLevel)
+                .max()
+                .orElse(0) + 1;
     }
 
     public List<String> getStepIdsByLevel(int level) {

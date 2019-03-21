@@ -12,7 +12,7 @@ public class StepsSeparator {
 
     public List<List<String>> toStages(List<List<String>> stepsInputs) {
         Graph stepsGraph = new StepsInputsParser().parse(stepsInputs);
-        return IntStream.rangeClosed(0, stepsGraph.getLevelNumber())
+        return IntStream.rangeClosed(0, stepsGraph.getLevelNumber() - 1)
                 .mapToObj(stepsGraph::getStepIdsByLevel)
                 .collect(toList());
 
