@@ -1,5 +1,7 @@
 package com.hks.kata;
 
+import com.hks.kata.graph.Graph;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -9,9 +11,9 @@ public class StepsSeparator {
 
 
     public List<List<String>> toStages(List<List<String>> stepsInputs) {
-        StepsGraph stepsGraph = StepsInputsParser.parse(stepsInputs);
+        Graph stepsGraph = new StepsInputsParser().parse(stepsInputs);
         return IntStream.rangeClosed(0, stepsGraph.getLevelNumber())
-                .mapToObj(stepsGraph::getStepNamesByLevel)
+                .mapToObj(stepsGraph::getStepIdsByLevel)
                 .collect(toList());
 
     }

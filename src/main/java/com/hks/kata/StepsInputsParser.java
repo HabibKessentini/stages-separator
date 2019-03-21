@@ -1,11 +1,13 @@
 package com.hks.kata;
 
+import com.hks.kata.graph.Graph;
+
 import java.util.List;
 
 public class StepsInputsParser {
 
-    public static StepsGraph parse(List<List<String>> stepsInputs) {
-        StepsGraph.Builder builder = StepsGraph.builder();
+    public Graph parse(List<List<String>> stepsInputs) {
+        Graph.Builder builder = Graph.builder();
         for (List<String> stepsInput : stepsInputs) {
             String firstStepName = stepsInput.get(0);
             String secondStepName = stepsInput.get(1);

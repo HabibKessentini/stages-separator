@@ -1,21 +1,21 @@
-package com.hks.kata;
+package com.hks.kata.graph;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StepNode {
+public class Node {
 
     private final String id;
     private final List<String> parents;
     private int level;
 
-    private StepNode(String id) {
+    private Node(String id) {
         this.id = id;
         this.parents = new ArrayList<>();
     }
 
-    public static StepNode withId(String name) {
-        return new StepNode(name);
+    public static Node withId(String name) {
+        return new Node(name);
     }
 
     public void addParent(String id) {
