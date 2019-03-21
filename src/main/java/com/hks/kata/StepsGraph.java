@@ -41,7 +41,7 @@ public class StepsGraph {
             int level = stepNode.getLevel() + 1;
             int currentLevel = currentStepNode.getLevel();
             currentStepNode.setLevel(level > currentLevel ? level : currentLevel);
-            setStepNodesLevels(currentStepNode);
+            setStepNodesLevel(currentStepNode);
         }
     }
 
@@ -49,7 +49,7 @@ public class StepsGraph {
         return stepByName.values().stream()
                 .filter(StepNode::isRoute)
                 .findFirst()
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(() -> new IllegalStateException("No Route node was found"));
     }
 
     public static class Builder {
