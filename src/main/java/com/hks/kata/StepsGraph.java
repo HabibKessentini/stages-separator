@@ -19,6 +19,20 @@ public class StepsGraph {
         setStepNodesLevels(computeRouteNode());
     }
 
+    public int getLevelNumber() {
+        return stepByName.values().stream()
+                .map(StepNode::getLevel)
+                .reduce((level1, level2) -> level1 > level2 ? level1 : level2)
+                .orElse(0);
+    }
+
+    public List<String> getStepNamesByLevel(int level) {
+        return stepByName.values().stream()
+                .filter(stepNode -> stepNode.getLevel() == level)
+                .map(StepNode::getId)
+                .collect(toList());
+    }
+
     private void setStepNodesLevels(StepNode stepNode) {
         for (StepNode currentStepNode : stepByName.values()) {
             if (!currentStepNode.hasParent(stepNode.getId())) {
@@ -36,20 +50,6 @@ public class StepsGraph {
                 .filter(StepNode::isRoute)
                 .findFirst()
                 .orElseThrow(IllegalAccessError::new);
-    }
-
-    public int getLevelNumber() {
-        return stepByName.values().stream()
-                .map(StepNode::getLevel)
-                .reduce((level1, level2) -> level1 > level2 ? level1 : level2)
-                .orElse(0);
-    }
-
-    public List<String> getStepNamesByLevel(int level) {
-        return stepByName.values().stream()
-                .filter(stepNode -> stepNode.getLevel() == level)
-                .map(StepNode::getId)
-                .collect(toList());
     }
 
     public static class Builder {
